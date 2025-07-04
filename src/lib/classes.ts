@@ -54,7 +54,7 @@ export class RootNode {
   }
 
   getEmployees() {
-    const result: string[] = [];
+    const result: Employee[] = [];
 
     for (const store of this.stores) {
       result.push(...store.getEmployees());
@@ -84,9 +84,19 @@ export class Area extends RootNode {
   }
 }
 
+interface Shift {
+  from: string;
+  to: string;
+}
+
+export interface Employee {
+  name: string;
+  shifts?: Shift[];
+}
+
 export class Store {
   name: string;
-  employees: string[];
+  employees: Employee[];
 
   constructor(name: string) {
     this.name = name;
@@ -94,7 +104,7 @@ export class Store {
   }
 
   addEmployee(name: string) {
-    this.employees.push(name);
+    this.employees.push({ name });
     return this;
   }
 
