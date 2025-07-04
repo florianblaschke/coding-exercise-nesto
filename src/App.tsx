@@ -1,40 +1,15 @@
 import './App.css';
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
+import { EmployeeList } from './components/ui/employee-list';
+import { bestFoodCompany } from './lib/classes';
 
 function App() {
-  return (
-    <div>
-      <SelectDemo />
-    </div>
-  );
-}
+  const employees = bestFoodCompany.getEmployees();
 
-export function SelectDemo() {
   return (
-    <Select>
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select a fruit" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+    <div className="p-8">
+      <EmployeeList employees={employees} />
+    </div>
   );
 }
 

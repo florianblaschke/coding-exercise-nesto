@@ -52,6 +52,20 @@ export class RootNode {
       }
     }
   }
+
+  getEmployees() {
+    const result: string[] = [];
+
+    for (const store of this.stores) {
+      result.push(...store.getEmployees());
+    }
+
+    for (const area of this.areas) {
+      result.push(...area.getEmployees());
+    }
+
+    return result;
+  }
 }
 
 class Headquarter extends RootNode {}
@@ -82,6 +96,10 @@ export class Store {
   addEmployee(name: string) {
     this.employees.push(name);
     return this;
+  }
+
+  getEmployees() {
+    return this.employees;
   }
 }
 
