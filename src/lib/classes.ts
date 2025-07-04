@@ -66,6 +66,12 @@ export class RootNode {
 
     return result;
   }
+
+  getEmployee(name: string): Employee | undefined {
+    const allEmployees = this.getEmployees();
+
+    return allEmployees.find((e) => e.name === name);
+  }
 }
 
 class Headquarter extends RootNode {}
@@ -111,6 +117,34 @@ export class Store {
   getEmployees() {
     return this.employees;
   }
+
+  addShifts({ name, shifts }: { name: string; shifts: Shift[] }) {
+    const employee = this.employees.find((e) => e.name === name);
+    const filteredShifts = filterDuplicates(shifts, employee?.shifts ?? []);
+
+    if (employee?.shifts) {
+      employee.shifts.push(...filteredShifts);
+    } else if (employee) {
+      employee.shifts = filteredShifts;
+    }
+
+    return this;
+  }
+}
+
+function filterDuplicates(newShifts: Shift[], oldShifts: Shift[]) {
+  const cleanedShifts: Shift[] = [];
+
+  for (const shift of newShifts) {
+    const slotTaken = oldShifts.some(
+      (s) => JSON.stringify(s) === JSON.stringify(shift)
+    );
+    if (!slotTaken) {
+      cleanedShifts.push(shift);
+    }
+  }
+
+  return cleanedShifts;
 }
 
 const bestFoodCompany = new Headquarter('BestFood Company').addArea({
@@ -138,5 +172,37 @@ bestFoodCompany
 
 bestFoodCompany.getStore('Stuttgart')?.addEmployee('Emil');
 bestFoodCompany.getStore('München')?.addEmployee('Fred');
+
+bestFoodCompany
+  .getStore('Hamburg')
+  ?.addShifts({
+    name: 'Claus',
+    shifts: [{ from: '8:00', to: '16:00' }],
+  })
+  .addShifts({ name: 'Claire', shifts: [{ from: '10:00', to: '14:00' }] });
+
+bestFoodCompany
+  .getStore('Karlsruhe')
+  ?.addShifts({
+    name: 'Daisy',
+    shifts: [{ from: '12:00', to: '20:00' }],
+  })
+  .addShifts({
+    name: 'Daniel',
+    shifts: [
+      { from: '11:00', to: '13:00' },
+      { from: '15:00', to: '21:00' },
+    ],
+  });
+
+bestFoodCompany.getStore('Stuttgart')?.addShifts({
+  name: 'Emil',
+  shifts: [{ from: '13:00', to: '23:00' }],
+});
+
+bestFoodCompany.getStore('München')?.addShifts({
+  name: 'Fred',
+  shifts: [{ from: '12:00', to: '18:00' }],
+});
 
 export { bestFoodCompany };
