@@ -53,6 +53,20 @@ export class RootNode {
     }
   }
 
+  getStoreNames() {
+    const result: string[] = [];
+
+    for (const store of this.stores) {
+      result.push(store.name);
+    }
+
+    for (const area of this.areas) {
+      result.push(...area.getStoreNames());
+    }
+
+    return result;
+  }
+
   getEmployees() {
     const result: Employee[] = [];
 
@@ -90,7 +104,7 @@ export class Area extends RootNode {
   }
 }
 
-interface Shift {
+export interface Shift {
   from: string;
   to: string;
 }
