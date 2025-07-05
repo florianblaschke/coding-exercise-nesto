@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './select';
+} from './ui/select';
 
 export function TimeTable() {
   const [store, setStore] = useState('Hamburg');

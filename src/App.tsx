@@ -1,8 +1,8 @@
 import './App.css';
 
-import { EmployeeList } from './components/ui/employee-list';
-import { StoreTable } from './components/ui/store-table';
-import { TimeTable } from './components/ui/time-table';
+import { EmployeeList } from './components/employee-list';
+import { StoreTable } from './components/store-table';
+import { TimeTable } from './components/time-table';
 import { bestFoodCompany } from './lib/classes';
 
 function App() {
