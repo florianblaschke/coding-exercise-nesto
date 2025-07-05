@@ -104,6 +104,10 @@ export class Area extends RootNode {
   }
 }
 
+/**
+ * For this exercise I chose the simple approach to just store the actual string time.
+ * This works for this project, on larger scale save it as Date and maybe already sort them by month/day
+ */
 export interface Shift {
   from: string;
   to: string;
@@ -150,6 +154,11 @@ export class Store {
   }
 }
 
+/**
+ * This is a bit hacky. React Strict Mode renders twice and pushes the shift two times, so I
+ * make a quick duplicate check. In prod this should be handled differently. E.g. unique Ids generated
+ * with the timestamp or check the actual Date and compare the timeslot via date-fns isSameDay and/or isWithinInterval
+ */
 function filterDuplicates(newShifts: Shift[], oldShifts: Shift[]) {
   const cleanedShifts: Shift[] = [];
 
