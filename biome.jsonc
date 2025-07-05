@@ -5,5 +5,12 @@
     "linter": {
       "enabled": false
     }
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "useFilenamingConvention": "off"
+      }
+    }
   }
 }
