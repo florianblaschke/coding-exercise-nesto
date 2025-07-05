@@ -1,5 +1,7 @@
 # Coding Exercise Nesto
-### Florian Blaschke
+## Florian Blaschke
+### Time till working version: 3.25 hours, Total: 4h
+
 
 This project runs with pnpm, install it if you haven’t already.
 
