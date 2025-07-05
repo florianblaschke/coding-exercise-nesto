@@ -9,7 +9,7 @@ export function StoreTable({ storeName }: { storeName: string }) {
 
   return (
     <ul className="space-y-2 pb-2">
-      <h2 className="font-semibold">Time table {store.name}:</h2>
+      <h2 className="font-semibold">Time table {store.getName()}:</h2>
       {store.getEmployees().map((e) => (
         <li className="font-light text-sm" key={e.name}>
           * {e.name}:{' '}

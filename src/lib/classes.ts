@@ -37,7 +37,7 @@ export class RootNode {
   }
 
   getStore(arg: string): Store | undefined {
-    const directMatch = this.stores.find((a) => a.name === arg);
+    const directMatch = this.stores.find((a) => a.getName() === arg);
     if (directMatch) {
       return directMatch;
     }
@@ -57,7 +57,7 @@ export class RootNode {
     const result: string[] = [];
 
     for (const store of this.stores) {
-      result.push(store.name);
+      result.push(store.getName());
     }
 
     for (const area of this.areas) {
@@ -115,12 +115,16 @@ export interface Employee {
 }
 
 export class Store {
-  name: string;
-  employees: Employee[];
+  private name: string;
+  private employees: Employee[];
 
   constructor(name: string) {
     this.name = name;
     this.employees = [];
+  }
+
+  getName() {
+    return this.name;
   }
 
   addEmployee(name: string) {
