@@ -8,21 +8,16 @@ import { bestFoodCompany } from './lib/classes';
 function App() {
   const employees = bestFoodCompany.getEmployees();
 
-  const hamburg = bestFoodCompany.getStore('Hamburg');
-  const karlsruhe = bestFoodCompany.getStore('Karlsruhe');
-  const stuttgart = bestFoodCompany.getStore('Stuttgart');
-  const münchen = bestFoodCompany.getStore('München');
-
   return (
     <>
       <div className="flex w-full justify-between p-8">
         <EmployeeList employees={employees} />
 
         <div className="space-y-2">
-          {hamburg && <StoreTable store={hamburg} />}
-          {karlsruhe && <StoreTable store={karlsruhe} />}
-          {stuttgart && <StoreTable store={stuttgart} />}
-          {münchen && <StoreTable store={münchen} />}
+          <StoreTable storeName={'Hamburg'} />
+          <StoreTable storeName={'Karlsruhe'} />
+          <StoreTable storeName={'Stuttgart'} />
+          <StoreTable storeName={'München'} />
         </div>
       </div>
       <TimeTable />

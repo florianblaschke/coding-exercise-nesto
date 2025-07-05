@@ -1,6 +1,12 @@
-import type { Store } from '@/lib/classes';
+import { bestFoodCompany } from '@/lib/classes';
 
-export function StoreTable({ store }: { store: Store }) {
+export function StoreTable({ storeName }: { storeName: string }) {
+  const store = bestFoodCompany.getStore(storeName);
+
+  if (!store) {
+    return null;
+  }
+
   return (
     <ul className="space-y-2 pb-2">
       <h2 className="font-semibold">Time table {store.name}:</h2>
