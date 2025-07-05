@@ -14,6 +14,10 @@ export class RootNode {
     return this;
   }
 
+  /**
+   * I am not sure what the expected behaviour might be in prod. Currently this would fail silently and forces
+   * TS into an optional check. Maybe it is better to throw an Error…
+   */
   getArea(arg: string): Area | undefined {
     const directMatch = this.areas.find((a) => a.name === arg);
     if (directMatch) {
