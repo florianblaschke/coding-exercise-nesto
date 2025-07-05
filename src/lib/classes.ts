@@ -92,6 +92,10 @@ export class RootNode {
   }
 }
 
+/**
+ * Don’t know how I feel about this – helps with naming but currently it is the same as RootNode
+ * Maybe if the Headquarter gets unique methods this would make more sense
+ */
 class Headquarter extends RootNode {}
 
 interface AreaProps {
